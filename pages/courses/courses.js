@@ -1,19 +1,19 @@
 const apiUrl = 'https://tarea-1.2023-1.tallerdeintegracion.cl/';
 
 const queryParams = new URLSearchParams(window.location.search);
-const menuID = queryParams.get('id');
+const courseID = queryParams.get('id');
 
-const titleElement = document.getElementById('menu-title');
-const subtitleElement = document.getElementById('menu-subtitle-block');
+const titleElement = document.getElementById('course-title');
+const subtitleElement = document.getElementById('course-subtitle-block');
 
-async function getMenu(id) {
-    const response = await fetch(`${apiUrl}/trays/${id}`);
+async function getCourse(id) {
+    const response = await fetch(`${apiUrl}/courses/${id}`);
     const jsonResponse = await response.json();
 
-    // display menu info
+    // display course info
     titleElement.innerHTML = jsonResponse.name;
     subtitleElement.innerHTML += `
-        <div class="field is-grouped" id='menu-info-tags'>
+        <div class="field is-grouped" id='course-info-tags'>
             <div class="control">
                 <div class="tags has-addons">
                     <span class="tag is-dark">Precio</span>
@@ -36,19 +36,23 @@ async function getMenu(id) {
             </div>
         </div>
 
-        <p class="subtitle" id="menu-subtitle-p">${jsonResponse.description}</p>
+        <p class="subtitle" id="course-subtitle-p">${jsonResponse.description}</p>
 
-        <div class="notification is-primary" id="menu-grid-back">
-            <div class="columns is-multiline is-mobile" id="menu-grid">
+        <figure class="image is-1by1">
+            <img src=${jsonResponse.img_url} alt="Placeholder image">
+        </figure>
+
+        <div class="notification is-primary" id="course-grid-back">
+            <div class="columns is-multiline is-mobile" id="course-grid">
             </div>
         </div>
     `;
 
-    const menuGrid = document.getElementById('menu-grid');
+    const courseGrid = document.getElementById('course-grid');
 
     // display courses
-    jsonResponse.courses.forEach( async element => {    
-        menuGrid.innerHTML += `
+    jsonResponse.ingredients.forEach( async element => {    
+        courseGrid.innerHTML += `
         <div class="column is-one-third">
             <div class="card">
                 <div class="card-image" onClick=handleClick(this) id=${element.id}>
@@ -60,7 +64,7 @@ async function getMenu(id) {
                     <div class="content">
                     ${element.name}
                     <br>
-                    <span class="tag">${element.category}</span>
+                    <span class="tag">Cantidad: ${element.quantity}</span>
                     </div>
                 </div>
             </div>
@@ -70,9 +74,8 @@ async function getMenu(id) {
 };
 
 function handleClick(event) {
-    // console.log(event.id);
-    window.location.href = `/pages/courses/courses.html?id=${event.id}`;
+    window.location.href = `/pages/ingredients/ingredients.html?id=${event.id}`;
 }
 
 
-getMenu(menuID);
+getCourse(courseID);

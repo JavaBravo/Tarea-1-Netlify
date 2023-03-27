@@ -52,10 +52,13 @@ function setPagination(nPages, current) {
 async function getImage(id) {
     const response = await fetch(`${apiUrl}/trays/${id}`);
     const courses = await response.json();
-    const imageUrl = courses.courses[0].img_url;
+    const imageUrl = courses.courses[2].img_url;
 
     return imageUrl;
 };
 
+function handleClick(event) {
+    window.location.href = `/pages/trays/trays.html?id=${event.id}`;
+};
 
 setMenus(1);
