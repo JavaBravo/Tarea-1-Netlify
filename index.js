@@ -36,14 +36,14 @@ async function setMenus(page) {
 
 
 function setPagination(nPages, current) {
-    console.log(`Son ${nPages} páginas, estás en la ${current}`);
+    // console.log(`Son ${nPages} páginas, estás en la ${current}`);
 
     const nextButton = document.getElementsByClassName('pagination-next');
     const prevButton = document.getElementsByClassName('pagination-previous');
 
 
     if (current == 1) {
-        console.log('es el 1, así que lo desactivamos')
+        // console.log('es el 1, así que lo desactivamos')
     } else {
         nextButton.disabled = true;
     };
@@ -62,3 +62,28 @@ function handleClick(event) {
 };
 
 setMenus(1);
+
+// const breadcrumbs = document.getElementById('breadcrumbs');
+
+function updateBreadcrumbs() {
+  const path = window.location.pathname;
+  const segments = path.split('/').filter((segment) => segment !== '');
+
+  let breadcrumbsHtml = '';
+  let url = '';
+
+  segments.forEach((segment, index) => {
+    url += `/${segment}`;
+    const title = segment.charAt(0).toUpperCase() + segment.slice(1);
+
+    breadcrumbsHtml += `
+      <a href="${url}">${title}</a>
+      ${index !== segments.length - 1 ? '<span>></span>' : ''}
+    `;
+  });
+
+  breadcrumbs.innerHTML = breadcrumbsHtml;
+}
+
+// updateBreadcrumbs();
+

@@ -76,3 +76,28 @@ function handleClick(event) {
 
 
 getMenu(menuID);
+
+const breadcrumbs = document.getElementById('breadcrumbs');
+
+function updateBreadcrumbs() {
+  const path = window.location.pathname;
+  const segments = path.split('/').filter((segment) => segment !== '');
+
+  let breadcrumbsHtml = '';
+  let url = '';
+
+  segments.forEach((segment, index) => {
+    url += `/${segment}`;
+    const title = segment.charAt(0).toUpperCase() + segment.slice(1);
+
+    breadcrumbsHtml += `
+      <a href="${url}">${title}</a>
+      ${index !== segments.length - 1 ? '<span>></span>' : ''}
+    `;
+  });
+
+  breadcrumbs.innerHTML = breadcrumbsHtml;
+}
+
+updateBreadcrumbs();
+

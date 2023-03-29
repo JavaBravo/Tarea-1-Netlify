@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link href="styles/index.css" rel="stylesheet">
+    <link href="courses.css" rel="stylesheet">
+
     <title>T1</title>
   </head>
 
@@ -26,10 +27,10 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <p class="control">
-        <input class="input" type="text" placeholder="Busca tu antojo" id="search-input" onkeypress="handleSearch(event)">
+        <input class="input" type="text" placeholder="Busca Menús/Platos/Ingredientes">
       </p>
       <p class="control">
-        <button class="button" onclick="handleSearch(event)" id="search-button">
+        <button class="button">
           🔍
         </button>
       </p>
@@ -38,25 +39,50 @@
 
   </nav>
 
-  <section class="hero">
-    <div class="hero-body" id="home-title">
-      <p class="title" id="home-title-text">
-        La cocina del Javier
-      </p>
-      <p class="subtitle">
-        No confundir con "La cocina de Javier"
-      </p>
-    </div>
-  </section>
-
   <div class="container is-max-widescreen">
-    <div class="notification is-primary" id="menu-grid-back">
-      <h1 class="title">Menús disponibles 😋</h1>
-      <div class="columns is-multiline is-mobile" id="menu-grid">
+    <div class="notification is-primary" id="courses-grid-back">
+      <h1 class="title">Platos disponibles 🍽️</h1>
+
+      <!-- Orden -->
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <div class="field has-addons">
+              <p class="control">
+                <button class="button" value="name" onclick="handleSort(this.value)">
+                  <span>Nombre</span>
+                </button>
+              </p>
+              <p class="control">
+                <button class="button" value="price" onclick="handleSort(this.value)">
+                  <span>Precio</span>
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="level-right">
+          <div class="field has-addons">
+            <p class="control">
+              <button class="button" value="asc" onclick="handleOrder(this.value)">
+                <span>Ascendente</span>
+              </button>
+            </p>
+            <p class="control">
+              <button class="button" value="desc" onclick="handleOrder(this.value)">
+                <span>Descendente</span>
+              </button>
+            </p>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="columns is-multiline is-mobile" id="courses-grid">
       </div>
 
       <!-- Paginación TODO -->
-      <nav class="pagination is-centered" role="navigation" aria-label="pagination" id="pagination">
+      <!-- <nav class="pagination is-centered" role="navigation" aria-label="pagination" id="pagination">
         <a class="pagination-previous">Previous</a>
         <a class="pagination-next">Next page</a>
         <ul class="pagination-list">
@@ -68,7 +94,7 @@
           <li><span class="pagination-ellipsis">&hellip;</span></li>
           <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
         </ul>
-      </nav>
+      </nav> -->
       <!-- Paginación -->
 
     </div>
@@ -84,10 +110,7 @@
     </div>
   </footer>
 
-  <!-- No quitar -->
   <script src="index.js"></script>
-  <script src="/pages/search/search.js"></script>
-  <!-- No quitar -->
 
   </body>
 </html>

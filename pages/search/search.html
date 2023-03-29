@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link href="../../styles/index.css" rel="stylesheet">
-    <link href="ingredients.css" rel="stylesheet">
+    <!-- <link href="search.css" rel="stylesheet"> -->
+
     <title>T1</title>
   </head>
 
@@ -16,7 +16,7 @@
         👨‍🍳 Cocina del Javier
       </a>
     </div>
-    <a class="navbar-item" href="/pages/courses/index.html?sort=name&order=asc" id="courses-index">
+    <a class="navbar-item" href="/pages/search/index.html?sort=name&order=asc" id="search-index">
       🍽️ Platos
     </a>
 
@@ -38,14 +38,15 @@
     </div>
 
   </nav>
-  
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <div class="block">
-        <p class="title" id="ingredient-title"></p>
+
+  <div class="container is-max-widescreen">
+    <div class="notification is-primary" id="search-grid-back">
+      <h1 class="title">Resultados de Búsqueda 🍽️</h1>
+
+      <div class="columns is-multiline is-mobile" id="search-grid">
       </div>
-      <div class="block" id="ingredient-subtitle-block">
-      </div>
+
+      <!-- Paginación TODO -->
     </div>
   </div>
 
@@ -59,7 +60,7 @@
     </div>
   </footer>
 
-  <script src="ingredients.js"></script>
+  <script src="search.js"></script>
 
   </body>
 </html>
